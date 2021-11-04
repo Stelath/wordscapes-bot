@@ -1,3 +1,5 @@
-class WordscapesBot:
-    def __init__(self):
-        self.
+from wordscapes_bot.word_search import word_search
+
+def run():
+    
+    word_search()
