@@ -23,7 +23,7 @@ def ocr_characters(image):
             character_string = pytesseract.image_to_string(crop_img, lang='eng', config=conf)[0:1].lower()
             print(character_string)
             character_position = {'x': x, 'y': y, 'w': w, 'h': h}
-            characters[character_string]: character_position
+            characters[character_string] = character_position
 
     print(characters)
     return characters
