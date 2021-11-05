@@ -20,6 +20,13 @@ def get_white_color_range(img):
     return mask
 
 
+def get_black_color_range(img):
+    lower = np.array([0])
+    upper = np.array([5])
+    mask = cv2.inRange(img, lower, upper)
+    return mask
+
+
 def invert_image(img):
     inverted_img = cv2.bitwise_not(img)
     return inverted_img
@@ -28,6 +35,13 @@ def invert_image(img):
 def get_formatted_screenshot(bbox=(0, 40, 800, 640)):
     img = screenshot(bbox)
     img = get_grayscale(img)
-    img = get_white_color_range(img)
-    img = invert_image(img)
+
+    number_of_white_pix = np.sum(img == 255)
+    number_of_black_pix = np.sum(img == 0)
+    if number_of_white_pix > number_of_black_pix:
+        img = get_white_color_range(img)
+        img = invert_image(img)
+    else:
+        img = get_black_color_range(img)
+
     return img

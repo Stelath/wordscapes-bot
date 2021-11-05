@@ -42,4 +42,4 @@ class WordscapesBot:
                 input_word(word, characters, self.word_palette_bbox)
 
             print(f'Loop finished in {loop_start_time - time.time()} s')
-            time.sleep(5)
+            time.sleep(7)

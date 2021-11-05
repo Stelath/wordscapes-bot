@@ -15,8 +15,6 @@ def input_word(word, input_characters, bbox):
 
         mouse.position = (x, y)
         mouse.press(Button.left)
-        print(f'Attempted to move mouse to {(x, y)}')
-        print(f'Moved mouse to {mouse.position}')
 
         time.sleep(1)
 
