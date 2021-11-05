@@ -31,7 +31,8 @@ class WordscapesBot:
             screenshot = get_formatted_screenshot(self.word_palette_bbox)
 
             characters = ocr_characters(screenshot)
-            character_list = characters.keys()
+            character_list = list(characters.keys())
+            print (characters)
             print(character_list)
 
             possible_words = word_search(character_list)
