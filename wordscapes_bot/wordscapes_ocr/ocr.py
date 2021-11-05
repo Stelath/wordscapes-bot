@@ -21,11 +21,10 @@ def ocr_characters(image):
 
             conf = '--psm 10 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
             character_string = pytesseract.image_to_string(crop_img, lang='eng', config=conf)[0:1].lower()
-            print(character_string)
+            
             character_position = {'x': x, 'y': y, 'w': w, 'h': h}
             characters[character_string] = character_position
 
-    print(characters)
     return characters
 
 
