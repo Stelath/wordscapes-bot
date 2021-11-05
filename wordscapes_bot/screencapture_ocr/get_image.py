@@ -25,7 +25,7 @@ def invert_image(img):
     return inverted_img
 
 
-def get_formatted_image(bbox=(0, 40, 800, 640)):
+def get_formatted_screenshot(bbox=(0, 40, 800, 640)):
     img = screenshot(bbox)
     img = get_grayscale(img)
     img = get_white_color_range(img)

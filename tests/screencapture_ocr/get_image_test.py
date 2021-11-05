@@ -1,6 +1,6 @@
 import time
 import cv2
-from wordscapes_bot.screencapture_ocr import get_formatted_image
+from wordscapes_bot.screencapture_ocr import get_formatted_screenshot
 from wordscapes_bot.screencapture_ocr.get_image import screenshot
 
 start_time = time.time()
@@ -9,7 +9,7 @@ end_time = time.time()
 print(f'Image capture took {end_time - start_time} seconds')
 
 start_time = time.time()
-formatted_image = get_formatted_image()
+formatted_image = get_formatted_screenshot()
 end_time = time.time()
 print(f'Image capture and processing took {end_time - start_time} seconds')
 

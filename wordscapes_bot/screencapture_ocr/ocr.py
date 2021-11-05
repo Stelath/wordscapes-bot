@@ -10,9 +10,10 @@ def ocr_characters(image):
     cnts = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     characters = []
+    bounding_boxes = [{}]
     for c in cnts:
         x, y, w, h = cv2.boundingRect(c)
-        aspect_ratio = h/w
+        aspect_ratio = h / w
         if aspect_ratio > 0.8:
             # Crop the image so pytesseract can do character detection on the individual characters
             crop_img = img[y:y + h, x:x + w]
@@ -23,8 +24,10 @@ def ocr_characters(image):
             character = pytesseract.image_to_string(crop_img, lang='eng', config=conf)
 
             characters.append(character[0:1])
+            bounding_boxes.append({'x': x, 'y': y, 'w': w, 'h': h})
 
-    return characters
+    return {'characters': characters, 'bounding_boxes': bounding_boxes}
+
 
 def ocr_bounding_boxes(image):
     img = image.copy()
@@ -35,7 +38,7 @@ def ocr_bounding_boxes(image):
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     for c in cnts:
         x, y, w, h = cv2.boundingRect(c)
-        aspect_ratio = h/w
+        aspect_ratio = h / w
         if aspect_ratio > 0.8:
             cv2.rectangle(img, (x, y), (x + w, y + h), (36, 255, 12), 2)
 
