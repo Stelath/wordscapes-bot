@@ -9,8 +9,7 @@ def ocr_characters(image):
     # Find contours and filter using aspect ratio and area
     cnts = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
-    characters = []
-    bounding_boxes = [{}]
+    characters = {}
     for c in cnts:
         x, y, w, h = cv2.boundingRect(c)
         aspect_ratio = h / w
