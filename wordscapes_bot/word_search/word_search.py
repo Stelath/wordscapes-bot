@@ -8,6 +8,7 @@ abs_file_path = os.path.join(script_dir, rel_path)
 words = open(abs_file_path, 'r')
 dictionary = json.load(words)
 
+
 def word_search(letters):
     possible_words = []
     actual_words = []
@@ -29,6 +30,7 @@ def word_search(letters):
             actual_words.append(possible_words[i])
 
     return actual_words
+
 
 # Closing file
 words.close()
