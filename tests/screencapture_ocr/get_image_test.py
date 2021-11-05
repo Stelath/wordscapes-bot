@@ -1,7 +1,7 @@
 import time
 import cv2
-from wordscapes_bot.screencapture_ocr import get_formatted_screenshot
-from wordscapes_bot.screencapture_ocr.get_image import screenshot
+from wordscapes_bot.wordscapes_ocr import get_formatted_screenshot
+from wordscapes_bot.wordscapes_ocr.get_image import screenshot
 
 start_time = time.time()
 screenshot_image = screenshot((0, 40, 800, 640))

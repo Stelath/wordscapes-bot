@@ -1,6 +1,7 @@
 from wordscapes_bot.word_search import word_search
-from wordscapes_bot.screencapture_ocr import get_formatted_screenshot
-from wordscapes_bot.screencapture_ocr import ocr_characters
+from wordscapes_bot.wordscapes_ocr import get_formatted_screenshot
+from wordscapes_bot.wordscapes_ocr import ocr_characters
+from wordscapes_bot.wordscapes_input import input_word
 
 import time
 import cv2
@@ -15,10 +16,14 @@ class WordscapesBot:
         while True:
             loop_start_time = time.time()
             screenshot = get_formatted_screenshot(self.word_palette_bbox)
+
             characters = ocr_characters(screenshot)
-            cv2.imshow('screenshot', screenshot)
-            possible_words = word_search(characters['characters'])
-            print(characters['characters'])
-            print(possible_words)
+            character_list = characters.keys()
+
+            possible_words = word_search(character_list)
+
+            for word in possible_words:
+                input_word(word, characters)
+
             print(f'Loop finished in {loop_start_time - time.time()} s')
             time.sleep(5)
