@@ -43,5 +43,6 @@ def get_formatted_screenshot(bbox=(0, 40, 800, 640)):
         img = invert_image(img)
     else:
         img = get_black_color_range(img)
+        img = invert_image(img)
 
     return img

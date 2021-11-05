@@ -4,13 +4,13 @@ from wordscapes_bot.wordscapes_ocr import get_formatted_screenshot
 from wordscapes_bot.wordscapes_ocr import ocr_characters
 from wordscapes_bot.wordscapes_ocr import ocr_bounding_boxes
 
-screenshot_image = screenshot((79, 356, 234, 523))
-formatted_image = get_formatted_screenshot((79, 356, 234, 523))
+screenshot_image = screenshot((54, 418, 252, 628))
+formatted_image = get_formatted_screenshot((54, 418, 252, 628))
 bounding_boxes = ocr_bounding_boxes(formatted_image)
 
 characters = ocr_characters(formatted_image)
-print(characters['characters'])
-print(characters['bounding_boxes'])
+print(list(characters.keys()))
+print(characters)
 
 cv2.imshow('screenshot', cv2.cvtColor(screenshot_image, cv2.COLOR_BGR2RGB))
 cv2.imshow('formatted image', formatted_image)

@@ -31,8 +31,8 @@ def ocr_characters(image):
 def ocr_bounding_boxes(image):
     img = image.copy()
     characters = ocr_characters(img)
-    for character in characters:
-        x, y, w, h = (character['x'], character['y'], character['w'], character['h'])
+    for character, pos in characters.items():
+        x, y, w, h = (pos['x'], pos['y'], pos['w'], pos['h'])
         aspect_ratio = h / w
         if aspect_ratio > 0.8:
             cv2.rectangle(img, (x, y), (x + w, y + h), (36, 255, 12), 2)
