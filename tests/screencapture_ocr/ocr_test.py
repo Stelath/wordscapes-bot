@@ -4,8 +4,8 @@ from wordscapes_bot.screencapture_ocr import get_formatted_screenshot
 from wordscapes_bot.screencapture_ocr import ocr_characters
 from wordscapes_bot.screencapture_ocr import ocr_bounding_boxes
 
-screenshot_image = screenshot((100, 250, 450, 650))
-formatted_image = get_formatted_screenshot((100, 250, 450, 650))
+screenshot_image = screenshot((79, 356, 234, 523))
+formatted_image = get_formatted_screenshot((79, 356, 234, 523))
 bounding_boxes = ocr_bounding_boxes(formatted_image)
 
 characters = ocr_characters(formatted_image)

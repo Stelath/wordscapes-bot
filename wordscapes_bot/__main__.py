@@ -1,3 +1,4 @@
+import pytesseract.pytesseract
 from pynput import mouse
 from wordscapes_bot.wordscapes_bot import WordscapesBot
 

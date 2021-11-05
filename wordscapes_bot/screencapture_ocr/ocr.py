@@ -20,10 +20,11 @@ def ocr_characters(image):
             # Add a border to the image so pytesseract can detect the character better
             crop_img = cv2.copyMakeBorder(crop_img, 20, 20, 20, 20, cv2.BORDER_CONSTANT, value=[255])
 
-            conf = '--psm 10 tessedit_char_whitelist="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"'
+            conf = '--psm 10 -c tessedit_char_whitelist=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
             character = pytesseract.image_to_string(crop_img, lang='eng', config=conf)
 
             characters.append(character[0:1])
+            characters = [x.lower() for x in characters]
             bounding_boxes.append({'x': x, 'y': y, 'w': w, 'h': h})
 
     return {'characters': characters, 'bounding_boxes': bounding_boxes}
