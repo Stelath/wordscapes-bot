@@ -17,7 +17,7 @@ class WordscapesBot:
         print('{0} released'.format(
             key))
         if key == keyboard.Key.esc:
-            self.run_active = True
+            self.run_active = False
             return False
 
     def run(self):
@@ -32,8 +32,10 @@ class WordscapesBot:
 
             characters = ocr_characters(screenshot)
             character_list = characters.keys()
+            print(character_list)
 
             possible_words = word_search(character_list)
+            print(possible_words)
 
             for word in possible_words:
                 input_word(word, characters)
