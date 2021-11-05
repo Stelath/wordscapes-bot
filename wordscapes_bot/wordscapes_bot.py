@@ -32,14 +32,14 @@ class WordscapesBot:
 
             characters = ocr_characters(screenshot)
             character_list = list(characters.keys())
-            print (characters)
+            print(characters)
             print(character_list)
 
             possible_words = word_search(character_list)
             print(possible_words)
 
             for word in possible_words:
-                input_word(word, characters)
+                input_word(word, characters, self.word_palette_bbox)
 
             print(f'Loop finished in {loop_start_time - time.time()} s')
             time.sleep(5)
