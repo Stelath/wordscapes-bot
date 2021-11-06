@@ -14,10 +14,9 @@ class WordscapesBot:
         # self.continue_location = continue_location
 
     def on_release_key(self, key):
-        print('{0} released'.format(
-            key))
         if key == keyboard.Key.esc:
-            self.run_active = False
+            print('ESC Key Pressed, Terminateing Program')
+            quit()
             return False
 
     def run(self):

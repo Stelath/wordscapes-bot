@@ -16,6 +16,6 @@ def input_word(word, input_characters, bbox):
         mouse.position = (x, y)
         mouse.press(Button.left)
 
-        time.sleep(1)
+        time.sleep(0.1)
 
     mouse.release(Button.left)
