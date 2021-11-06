@@ -25,3 +25,9 @@ def input_word(word, in_characters, bbox):
 
     mouse.release(Button.left)
     time.sleep(0.1)
+
+
+def press_button(pos):
+    mouse = Controller()
+    mouse.position = pos
+    mouse.click(Button.left)

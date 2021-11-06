@@ -6,6 +6,7 @@ import sys
 import os
 
 clicks = 0
+level_button_pos = ()
 word_palette_bbox = ()
 
 
@@ -13,10 +14,23 @@ def on_click(x, y, button, pressed):
     global clicks
     global word_palette_bbox
     if pressed:
+        level_button_pos = (x, y)
+        print(f'Pressed at {(x, y)}')
+
+    if clicks >= 1:
+        return False
+    else:
+        clicks += 1
+
+
+def on_click_bbox(x, y, button, pressed):
+    global clicks
+    global word_palette_bbox
+    if pressed:
         word_palette_bbox += (x, y)
         print(f'Pressed at {(x, y)}')
 
-    if clicks == 3:
+    if clicks >= 3:
         return False
     else:
         clicks += 1
@@ -34,11 +48,16 @@ def main():
     listener.start()
 
     with mouse.Listener(
-            on_click=on_click) as listener:
+            on_click=on_click_level()) as listener:
         listener.join()
 
-    print(word_palette_bbox)
-    wordscapes_bot = WordscapesBot(word_palette_bbox)
+    with mouse.Listener(
+            on_click=on_click_bbox()) as listener:
+        listener.join()
+
+    print('Level Button Pos:', level_button_pos)
+    print('Word Palette BBox:', word_palette_bbox)
+    wordscapes_bot = WordscapesBot(word_palette_bbox, level_button_pos)
     wordscapes_bot.run()
 
 if __name__ == "__main__":
