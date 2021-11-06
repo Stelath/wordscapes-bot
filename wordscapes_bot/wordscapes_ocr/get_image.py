@@ -1,11 +1,22 @@
 import numpy as np
 from PIL import ImageGrab
 import cv2
+from sys import platform
 
 
 def screenshot(bounding_box):
-    printscreen = np.array(ImageGrab.grab(bbox=bounding_box))
-    return printscreen
+    if platform != "darwin":
+        img = np.array(ImageGrab.grab(bbox=bounding_box))
+    else:
+        print('On Mac OS')
+        bounding_box = tuple([2 * num for num in bounding_box])
+        img = ImageGrab.grab(bbox=bounding_box)
+        # Set the image to half size so it works
+        # when finding character pos on screens
+        img = img.resize((round(img.size[0] * 0.5), round(img.size[1] * 0.5)))
+        img = np.array(img)
+
+    return img
 
 
 # Used to make it easier for the OCR to detect the letters
