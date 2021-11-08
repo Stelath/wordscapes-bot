@@ -1,5 +1,5 @@
 import time
-from wordscapes_bot.word_search import word_search
+from wordscapesbot.word_search import word_search
 
 start_time = time.time()
 test_one = word_search(['h', 'e', 'l', 'l', 'o'])

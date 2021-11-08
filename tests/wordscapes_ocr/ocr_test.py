@@ -1,11 +1,12 @@
 import cv2
-from wordscapes_bot.wordscapes_ocr.get_image import screenshot
-from wordscapes_bot.wordscapes_ocr import get_formatted_screenshot
-from wordscapes_bot.wordscapes_ocr import ocr_characters
-from wordscapes_bot.wordscapes_ocr import ocr_bounding_boxes
+from wordscapesbot.wordscapes_ocr.get_image import screenshot
+from wordscapesbot.wordscapes_ocr import get_formatted_screenshot
+from wordscapesbot.wordscapes_ocr import ocr_characters
+from wordscapesbot.wordscapes_ocr import ocr_bounding_boxes
 
-screenshot_image = screenshot((1621, 347, 1824, 547))
-formatted_image = get_formatted_screenshot((1621, 347, 1824, 547))
+bbox = (1583, 410, 1796, 637)
+screenshot_image = screenshot(bbox)
+formatted_image = get_formatted_screenshot(bbox)
 bounding_boxes = ocr_bounding_boxes(formatted_image)
 
 characters = ocr_characters(formatted_image)
