@@ -25,7 +25,7 @@ def get_grayscale(img):
 
 
 def get_white_color_range(img):
-    lower = np.array([253])
+    lower = np.array([250])
     upper = np.array([255])
     mask = cv2.inRange(img, lower, upper)
     return mask
