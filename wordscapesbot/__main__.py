@@ -1,6 +1,6 @@
 from pynput import mouse
 from pynput import keyboard
-from wordscapesbot import WordscapesBot
+from .wordscapes_bot import WordscapesBot
 
 import sys
 import os

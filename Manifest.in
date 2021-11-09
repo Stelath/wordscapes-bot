@@ -1,0 +1,3 @@
+include \
+wordscapesbot/word_search/words_dictionary_long.json \
+wordscapesbot/word_search/words_dictionary_short.json \

@@ -18,7 +18,7 @@ def ocr_characters(image):
             # Crop the image so pytesseract can do character detection on the individual characters
             crop_img = img[y:y + h, x:x + w]
             # Add a border to the image so pytesseract can detect the character better
-            crop_img = cv2.copyMakeBorder(crop_img, 15, 15, 15, 15, cv2.BORDER_CONSTANT, value=[255])
+            crop_img = cv2.copyMakeBorder(crop_img, 25, 25, 25, 25, cv2.BORDER_CONSTANT, value=[255])
 
             # Resize the image so that OCR is more accurate
             resize_width = 150
@@ -38,6 +38,8 @@ def ocr_characters(image):
                 # If there is still an error detecting the character return nothing
                 if character_string == 'l' or character_string == '|':
                     character_string = 'i'
+                elif character_string == 'I':
+                    character_string = 'f'
                 elif character_string == '\x0c' or not character_string.isalpha():
                     return {}
 

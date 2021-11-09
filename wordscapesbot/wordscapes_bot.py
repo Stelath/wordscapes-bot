@@ -1,9 +1,9 @@
-from word_search import word_search
-from wordscapes_ocr import get_formatted_screenshot
-from wordscapes_ocr import ocr_characters
-from wordscapes_input import input_word
-from wordscapes_input import press_button
-from wordscapes_input import press_esc
+from .word_search import word_search
+from .wordscapes_ocr import get_formatted_screenshot
+from .wordscapes_ocr import ocr_characters
+from .wordscapes_input import input_word
+from .wordscapes_input import press_button
+from .wordscapes_input import press_esc
 
 import time
 
