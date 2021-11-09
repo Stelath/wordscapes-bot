@@ -17,7 +17,7 @@ class WordscapesBot:
 
     def run(self):
         last_character_list = []
-        failed = 0
+        failed = 1
         while self.run_active:
             loop_start_time = time.time()
             screenshot = get_formatted_screenshot(self.word_palette_bbox)
@@ -29,9 +29,15 @@ class WordscapesBot:
             # Check to see if the short dictionary could complete the puzzle,
             # if not use the long dictionary instead, this cuts down time overall
             # as the majority of puzzles can be completed with the short dictionary
-            if failed < 1:
+            if failed < 2:
                 possible_words = word_search(character_list)
+            elif failed < 4:
+                possible_words = word_search(character_list, False)
             else:
+                print('FAILED TOO MANY TIMES, ATTEMPTING VOLITILE CHARACTER OCR')
+                characters = ocr_characters(screenshot, True)
+                character_list = [character for character, pos in characters]
+                print('Characters Detected:', character_list)
                 possible_words = word_search(character_list, False)
 
             # Check to see if there is a popup in the way (the ocr
@@ -46,7 +52,7 @@ class WordscapesBot:
                 if character_list == last_character_list:
                     failed += 1
                 else:
-                    failed = 0
+                    failed = 1
                 last_character_list = character_list
                 esc = True
 

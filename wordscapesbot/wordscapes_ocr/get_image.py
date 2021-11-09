@@ -24,17 +24,10 @@ def get_grayscale(img):
     return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 
-def get_white_color_range(img):
-    lower = np.array([250])
-    upper = np.array([255])
-    mask = cv2.inRange(img, lower, upper)
-    return mask
-
-
-def get_black_color_range(img):
-    lower = np.array([0])
-    upper = np.array([2])
-    mask = cv2.inRange(img, lower, upper)
+def get_color_range(img, lower, upper):
+    low = np.array(lower)
+    upp = np.array(upper)
+    mask = cv2.inRange(img, low, upp)
     return mask
 
 
@@ -47,13 +40,11 @@ def get_formatted_screenshot(bbox=(0, 40, 800, 640)):
     img = screenshot(bbox)
     img = get_grayscale(img)
 
-    number_of_white_pix = np.sum(img >= 250)
-    number_of_black_pix = np.sum(img <= 5)
-    if number_of_white_pix > number_of_black_pix:
-        img = get_white_color_range(img)
-        img = invert_image(img)
-    else:
-        img = get_black_color_range(img)
-        img = invert_image(img)
+    unique, counts = np.unique(img.flatten(), axis=0, return_counts=True)
+    color = unique[np.argmax(counts)]
+    print(color)
+
+    img = get_color_range(img, color - 2, color + 2)
+    img = invert_image(img)
 
     return img
