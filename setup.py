@@ -16,6 +16,7 @@ setup(
         'pytesseract>=0.3.8',
         'pynput>=1.7.4'
     ],
+    include_package_data=True,
     keywords=['wordscapes', 'bot', 'videogame', 'tesseract'],
     classifiers=[
         'Development Status :: 4 - Beta',
