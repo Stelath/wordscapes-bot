@@ -22,6 +22,6 @@ Run the package by running `python -m wordscapesbot` in your terminal
 
 ### Arguments
 You can add arguments to the end of the expression ex. `python -m wordscapesbot (argument here)`
-| Argument       | Description   |
-| -------------  | :------------ |
-| -s or --speed  | Used to set the input speed, enter a float to change the speed (ex. `-s 2.5` inputs words 2.5 times faster)|
+| Argument        | Description   |
+| -------------   | :------------ |
+| `-s or --speed` | Used to set the input speed, enter a float to change the speed (ex. `-s 2.5` inputs words 2.5 times faster)|
