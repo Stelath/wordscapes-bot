@@ -46,8 +46,8 @@ class WordscapesBot:
                 esc = False
                 press_button(self.level_button_loc)
                 time.sleep(0.5)
-                _, _, x, y = self.word_palette_bbox
-                press_button((x, y))
+                x1, _, x2, y = self.word_palette_bbox
+                press_button((x1 + ((x2 - x1) / 2), y))
             else:
                 if character_list == last_character_list:
                     failed += 1
