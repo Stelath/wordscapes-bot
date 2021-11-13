@@ -40,8 +40,13 @@ def get_formatted_screenshot(bbox=(0, 40, 800, 640)):
     img = screenshot(bbox)
     img = get_grayscale(img)
 
+    # Finds the color of the text by looking for the most common color in the
+    # image that is <= 40 or >= 215
     unique, counts = np.unique(img.flatten(), axis=0, return_counts=True)
-    color = unique[np.argmax(counts)]
+    for i in range(1, len(unique)):
+        color = unique[np.where(counts == np.partition(counts.flatten(), -i)[-i])][0]
+        if color <= 40 or color >= 215:
+            break
 
     img = get_color_range(img, color - 2, color + 2)
     img = invert_image(img)

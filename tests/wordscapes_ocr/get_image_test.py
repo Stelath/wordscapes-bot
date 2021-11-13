@@ -4,12 +4,12 @@ from wordscapesbot.wordscapes_ocr import get_formatted_screenshot
 from wordscapesbot.wordscapes_ocr.get_image import screenshot
 
 start_time = time.time()
-screenshot_image = screenshot((0, 40, 800, 640))
+screenshot_image = screenshot((1467, 601, 1748, 915))
 end_time = time.time()
 print(f'Image capture took {end_time - start_time} seconds')
 
 start_time = time.time()
-formatted_image = get_formatted_screenshot()
+formatted_image = get_formatted_screenshot((1467, 601, 1748, 915))
 end_time = time.time()
 print(f'Image capture and processing took {end_time - start_time} seconds')
 
