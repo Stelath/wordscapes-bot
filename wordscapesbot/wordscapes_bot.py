@@ -29,9 +29,9 @@ class WordscapesBot:
             # Check to see if the short dictionary could complete the puzzle,
             # if not use the long dictionary instead, this cuts down time overall
             # as the majority of puzzles can be completed with the short dictionary
-            if failed < 2:
+            if failed < 3:
                 possible_words = word_search(character_list)
-            elif failed < 4:
+            elif failed < 5:
                 possible_words = word_search(character_list, False)
             else:
                 print('FAILED TOO MANY TIMES, ATTEMPTING VOLITILE CHARACTER OCR')
@@ -48,6 +48,7 @@ class WordscapesBot:
                 time.sleep(0.5)
                 x1, _, x2, y = self.word_palette_bbox
                 press_button((x1 + ((x2 - x1) / 2), y))
+                failed += 1
             else:
                 if character_list == last_character_list:
                     failed += 1
