@@ -28,11 +28,12 @@ class WordscapesBot:
 
             # Check to see if the short dictionary could complete the puzzle,
             # if not use the long dictionary instead, this cuts down time overall
-            # as the majority of puzzles can be completed with the short dictionary
+            # as the majority of puzzles can be completed with the short dictionary.
+            # Also use a volitile way to detect characters in order to find the
+            # correct character, although this is less accurate, it stops the bot
+            # from getting stuck in a loop.
             if failed < 3:
                 possible_words = word_search(character_list)
-            elif failed < 5:
-                possible_words = word_search(character_list, False)
             else:
                 print('FAILED TOO MANY TIMES, ATTEMPTING VOLITILE CHARACTER OCR')
                 characters = ocr_characters(screenshot, True)
