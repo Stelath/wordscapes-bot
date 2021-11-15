@@ -5,7 +5,7 @@
 A Python powered bot that solves WordScapes levels through OCR.
 
 ## Demo
-![Demo Gif](https://media.giphy.com/media/1CyQXlFN6QcDLHU8Xu/giphy-downsized-large.gif)
+![Demo Gif](https://i.giphy.com/media/1CyQXlFN6QcDLHU8Xu/giphy-downsized-large.gif)
 
 ## Setup
 ### Installing Tesseract
