@@ -4,6 +4,9 @@
 
 A Python powered bot that solves WordScapes levels through OCR.
 
+## Demo
+![Demo Gif](https://media.giphy.com/media/1CyQXlFN6QcDLHU8Xu/giphy-downsized-large.gif)
+
 ## Setup
 ### Installing Tesseract
 Download tesseract for Windows from UB-Mannheim:
@@ -18,7 +21,7 @@ brew install tesseract
 Download a release from the release page then open your terminal and navigate to the folder the package was downloaded in; then run `pip install wordscapesbot-1.1.0.tar.gz` 
 
 ## Usage
-Run the package by running `python -m wordscapesbot` in your terminal
+Run the package by running `python -m wordscapesbot` in your terminal and following the instructuions that appear on the command line.
 
 ### Arguments
 You can add arguments to the end of the expression ex. `python -m wordscapesbot (argument here)`
