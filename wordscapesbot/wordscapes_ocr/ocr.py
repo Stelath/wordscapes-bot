@@ -20,7 +20,7 @@ def ocr_characters(image, volatile=False):
 
             if not volatile:
                 # Add a border to the image so pytesseract can detect the character better
-                crop_img = cv2.copyMakeBorder(crop_img, 20, 20, 20, 20, cv2.BORDER_CONSTANT, value=[255])
+                crop_img = cv2.copyMakeBorder(crop_img, 25, 25, 25, 25, cv2.BORDER_CONSTANT, value=[255])
 
                 # Resize the image so that OCR is more accurate
                 resize_width = 150

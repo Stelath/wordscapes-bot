@@ -33,12 +33,12 @@ class WordscapesBot:
             # correct character, although this is less accurate, it stops the bot
             # from getting stuck in a loop.
             if failed < 3:
-                possible_words = word_search(character_list)
+                possible_words = word_search(character_list, True)
+            elif failed < 4:
+                possible_words = word_search(character_list, False)
             else:
                 print('FAILED TOO MANY TIMES, ATTEMPTING VOLITILE CHARACTER OCR')
-                characters = ocr_characters(screenshot, True)
-                character_list = [character for character, pos in characters]
-                print('Characters Detected:', character_list)
+                character_list = ocr_characters(screenshot, True)
                 possible_words = word_search(character_list, False)
 
             # Check to see if there is a popup in the way (the ocr
@@ -46,9 +46,9 @@ class WordscapesBot:
             if not possible_words:
                 esc = False
                 press_button(self.level_button_loc)
-                time.sleep(0.5)
+                time.sleep(0.75)
                 x1, _, x2, y = self.word_palette_bbox
-                press_button((x1 + ((x2 - x1) / 2), y))
+                press_button((x1 + ((x2 - x1) / 2), y + 40))
                 failed += 1
             else:
                 if character_list == last_character_list:
@@ -69,7 +69,7 @@ class WordscapesBot:
 
             # Skip the animations and go to the next level with the esc key
             if esc:
-                time.sleep(0.5)
+                time.sleep(0.75)
                 press_esc()
-                time.sleep(2.25)
                 press_button(self.level_button_loc)
+                time.sleep(2.25)
