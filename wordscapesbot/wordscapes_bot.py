@@ -24,7 +24,6 @@ class WordscapesBot:
 
             characters = ocr_characters(screenshot)
             character_list = [character for character, pos in characters]
-            print('Characters Detected:', character_list)
 
             # Check to see if the short dictionary could complete the puzzle,
             # if not use the long dictionary instead, this cuts down time overall
@@ -38,8 +37,10 @@ class WordscapesBot:
                 possible_words = word_search(character_list, False)
             else:
                 print('FAILED TOO MANY TIMES, ATTEMPTING VOLITILE CHARACTER OCR')
-                character_list = ocr_characters(screenshot, True)
+                characters = ocr_characters(screenshot)
+                character_list = [character for character, pos in characters]
                 possible_words = word_search(character_list, False)
+            print('Characters Detected:', character_list)
 
             # Check to see if there is a popup in the way (the ocr
             # will not return any characters) and attempt to click out of it
