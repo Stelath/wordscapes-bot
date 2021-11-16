@@ -14,7 +14,8 @@ def ocr_characters(image, volatile=False):
     for c in cnts:
         x, y, w, h = cv2.boundingRect(c)
         area = h * w
-        if area > 400:
+        i_test = h > (5 * w)
+        if area > 375 or (area > 115 and i_test):
             # Crop the image so pytesseract can do character detection on the individual characters
             crop_img = img[y:y + h, x:x + w]
 
