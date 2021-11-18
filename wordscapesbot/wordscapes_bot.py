@@ -32,12 +32,12 @@ class WordscapesBot:
             # correct character, although this is less accurate, it stops the bot
             # from getting stuck in a loop.
             if failed < 3:
-                possible_words = word_search(character_list, True)
+                possible_words = word_search(character_list)
             elif failed < 4:
                 possible_words = word_search(character_list, False)
             else:
                 print('FAILED TOO MANY TIMES, ATTEMPTING VOLITILE CHARACTER OCR')
-                characters = ocr_characters(screenshot)
+                characters = ocr_characters(screenshot, True)
                 character_list = [character for character, pos in characters]
                 possible_words = word_search(character_list, False)
             print('Characters Detected:', character_list)
