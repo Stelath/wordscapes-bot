@@ -33,13 +33,13 @@ class WordscapesBot:
             # from getting stuck in a loop.
             if failed < 3:
                 possible_words = word_search(character_list)
-            elif failed < 4:
+            elif failed < 5:
                 possible_words = word_search(character_list, False)
             else:
                 print('FAILED TOO MANY TIMES, ATTEMPTING VOLITILE CHARACTER OCR')
                 characters = ocr_characters(screenshot, True)
-                character_list = [character for character, pos in characters]
-                possible_words = word_search(character_list, False)
+                new_character_list = [character for character, pos in characters]
+                possible_words = word_search(new_character_list, False)
             print('Characters Detected:', character_list)
 
             # Check to see if there is a popup in the way (the ocr
@@ -48,8 +48,10 @@ class WordscapesBot:
                 esc = False
                 press_button(self.level_button_loc)
                 time.sleep(0.75)
-                x1, _, x2, y = self.word_palette_bbox
-                press_button((x1 + ((x2 - x1) / 2), y + 40))
+                x1, y1, x2, y2 = self.word_palette_bbox
+                press_button((x1 + ((x2 - x1) / 2), y2 + 40))
+                time.sleep(0.25)
+                press_button((x1 + ((x2 - x1) / 2), y1 + ((y2 - y1) / 2) + 10))
                 failed += 1
             else:
                 if character_list == last_character_list:

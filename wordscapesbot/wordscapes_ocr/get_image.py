@@ -52,7 +52,7 @@ def get_formatted_screenshot(bbox=(0, 40, 800, 640)):
             color = unique[np.where(counts == np.partition(counts.flatten(), -i)[-i])][0]
             if color <= 40 or color >= 245:
                 break
-    img = get_color_range(img, color - 2, color + 2)
+    img = get_color_range(img, color - 1, color + 1)
     img = invert_image(img)
 
     return img
