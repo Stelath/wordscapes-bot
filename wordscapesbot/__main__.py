@@ -29,10 +29,14 @@ def on_click_bbox(x, y, button, pressed):
         word_palette_bbox += (x, y)
         print(f'Pressed at {(x, y)}')
 
-    if clicks >= 4:
+    if clicks >= 8:
         return False
     elif clicks == 2:
-        print('Please click on the bottom right corner of the word palette')
+        print('Please click on the right of the word palette')
+    elif clicks == 4:
+        print('Please click on the bottom of the word palette')
+    elif clicks == 6:
+        print('Please click on the left of the word palette')
 
 
 def on_release_key(key):
@@ -53,10 +57,15 @@ def main():
             on_click=on_click_level) as listener:
         listener.join()
 
-    print('Please click on the top left corner of the word palette')
+    print('Please click on the top of the word palette')
     with mouse.Listener(
             on_click=on_click_bbox) as listener:
         listener.join()
+
+    # Calculate the word palette bbox from the inputed points
+    global word_palette_bbox
+    _, y1, x2, _, _, y2, x1, _ = word_palette_bbox
+    word_palette_bbox = (x1, y1, x2, y2)
 
     print('Level Button Pos:', level_button_pos)
     print('Word Palette BBox:', word_palette_bbox)

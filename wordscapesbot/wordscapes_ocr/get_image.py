@@ -1,5 +1,5 @@
 import numpy as np
-from PIL import ImageGrab
+from PIL import ImageGrab, Image, ImageDraw
 import cv2
 from sys import platform
 
@@ -8,7 +8,6 @@ def screenshot(bounding_box):
     if platform != "darwin":
         img = np.array(ImageGrab.grab(bbox=bounding_box))
     else:
-        print('On Mac OS')
         bounding_box = tuple([2 * num for num in bounding_box])
         img = ImageGrab.grab(bbox=bounding_box)
         # Set the image to half size so it works
@@ -36,6 +35,17 @@ def invert_image(img):
     return inverted_img
 
 
+def circle_crop(img):
+    # Crop the image in the shape of a circle
+    w, h = img.shape
+    xc, yc = w // 2, h // 2
+
+    mask = np.zeros((w, h), np.uint8)
+    circle_img = cv2.circle(mask, (xc, yc), yc, 255, -1)
+    img = cv2.bitwise_and(img, img, mask=circle_img)
+    return img
+
+
 def get_formatted_screenshot(bbox=(0, 40, 800, 640)):
     img = screenshot(bbox)
     img = get_grayscale(img)
@@ -52,7 +62,8 @@ def get_formatted_screenshot(bbox=(0, 40, 800, 640)):
             color = unique[np.where(counts == np.partition(counts.flatten(), -i)[-i])][0]
             if color <= 40 or color >= 245:
                 break
-    img = get_color_range(img, color - 1, color + 1)
+    img = get_color_range(img, color - 2, color + 2)
+    img = circle_crop(img)
     img = invert_image(img)
 
     return img
