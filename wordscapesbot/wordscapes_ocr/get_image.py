@@ -46,22 +46,44 @@ def circle_crop(img):
     return img
 
 
+def color_mask_word_pallete(img):
+    # Crop the image in the shape of a circle
+    w, h = img.shape
+    xc, yc = w // 2, h // 2
+
+    base = np.full((w, h), 130, np.uint8)
+
+    mask = np.full((w, h), 255, np.uint8)
+    circle_img = cv2.circle(mask, (xc, yc), yc, 0, -1)
+    color_mask = cv2.bitwise_and(base, base, mask=circle_img)
+    for row in range(len(color_mask)):
+        for col in range(len(color_mask[row])):
+            if color_mask[row][col] == 0:
+                color_mask[row][col] = img[row][col]
+
+    color_mask = cv2.circle(color_mask, (xc, yc), int(yc - (w * 0.25)), 130, -1)
+    return color_mask
+
+
 def get_formatted_screenshot(bbox=(0, 40, 800, 640)):
     img = screenshot(bbox)
     img = get_grayscale(img)
 
+    color_mask = color_mask_word_pallete(img)
+
     # Finds the color of the text by looking for the most common color in the
     # image that is <= 40 or >= 215
-    unique, counts = np.unique(img.flatten(), axis=0, return_counts=True)
+    unique, counts = np.unique(color_mask.flatten(), axis=0, return_counts=True)
     for i in range(1, len(unique)):
         color = unique[np.where(counts == np.partition(counts.flatten(), -i)[-i])][0]
-        if color <= 3 or color >= 252:
+        if color <= 3 or color >= 254:
             break
     if not (color <= 3 or color >= 252):
         for i in range(1, len(unique)):
             color = unique[np.where(counts == np.partition(counts.flatten(), -i)[-i])][0]
             if color <= 40 or color >= 245:
                 break
+
     img = get_color_range(img, color - 2, color + 2)
     img = circle_crop(img)
     img = invert_image(img)
