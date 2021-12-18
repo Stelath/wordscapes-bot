@@ -49,9 +49,10 @@ class WordscapesBot:
             if not possible_words:
                 esc = False
                 press_button(self.level_button_loc)
-                time.sleep(0.75)
+                time.sleep(1)
                 x1, y1, x2, y2 = self.word_palette_bbox
                 press_button((x1 + ((x2 - x1) / 2), y2 + 40))
+                time.sleep(0.1)
                 press_button((x1 + ((x2 - x1) / 2), y1 + ((y2 - y1) / 2) + 10))
                 failed += 1
             else:
