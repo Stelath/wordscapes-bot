@@ -18,7 +18,7 @@ brew install tesseract
 `
 
 ### Installing WordScapes Bot
-Download a release from the release page then open your terminal and navigate to the folder the package was downloaded in; then run `pip install wordscapesbot-1.1.0.tar.gz` 
+Download a release from the release page then open your terminal and navigate to the folder the package was downloaded in; then run `pip install wordscapesbot-1.1.5.tar.gz` 
 
 ## Usage
 Run the package by running `python -m wordscapesbot` in your terminal and following the instructuions that appear on the command line.
