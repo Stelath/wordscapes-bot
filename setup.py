@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 print(find_packages(include=['wordscapesbot', 'wordscapesbot.*']))
 setup(
     name='wordscapesbot',
-    version='1.1.5',
+    version='1.1.7',
     packages=find_packages(include=['wordscapesbot', 'wordscapesbot.*']),
     url='https://github.com/Stelath/wordscapes-bot',
     license='GNU GPLv3',
