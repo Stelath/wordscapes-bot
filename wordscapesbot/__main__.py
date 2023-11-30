@@ -4,20 +4,41 @@ from .wordscapes_bot import WordscapesBot
 
 import sys
 import os
+import time
 
 clicks = 0
 level_button_pos = ()
 word_palette_bbox = ()
 
+piggy_close_pos = ()
+edge_close_pos = ()
+button_clicks = 0
 
-def on_click_level(x, y, button, pressed):
+
+def on_click_buttons(x, y, button, pressed):
+    global button_clicks
     global level_button_pos
+    global piggy_close_pos
+    global edge_close_pos
+
+    button_clicks +=1
+
     if pressed:
-        level_button_pos = (x, y)
+        if button_clicks == 1:
+            piggy_close_pos = (x, y)
+        elif button_clicks == 3:
+            edge_close_pos = (x, y)
+        else:
+            level_button_pos = (x, y)
         print(f'Pressed at {(x, y)}')
 
-    return False
-
+    if button_clicks >= 6:
+        return False
+    elif button_clicks == 2:
+        print('Please click the edge')
+    elif button_clicks == 4:
+        print('Please click the level start button')
+    
 
 def on_click_bbox(x, y, button, pressed):
     global clicks
@@ -40,11 +61,10 @@ def on_click_bbox(x, y, button, pressed):
 
 
 def on_release_key(key):
-    if hasattr(key, 'char') and 'q' == key.char:
-        print('Q Key Pressed, Terminating Program')
+    if hasattr(key, 'char') and '-' == key.char:
+        print('- Key Pressed, Terminating Program')
         os._exit(1)
         return False
-
 
 def main():
     # Add a way to stop the loop
@@ -52,10 +72,15 @@ def main():
         on_release=on_release_key)
     listener.start()
 
-    print('Please click the level start button')
+    print('Please click the pig close')
     with mouse.Listener(
-            on_click=on_click_level) as listener:
+            on_click=on_click_buttons) as listener:
         listener.join()
+
+    #print('Please click the level start button')
+    #with mouse.Listener(
+    #        on_click=on_click_level) as listener:
+    #    listener.join()
 
     print('Please click on the top of the word palette')
     with mouse.Listener(
@@ -67,6 +92,8 @@ def main():
     _, y1, x2, _, _, y2, x1, _ = word_palette_bbox
     word_palette_bbox = (x1, y1, x2, y2)
 
+    print('Piggy Close Pos:', piggy_close_pos)
+    print('Edge Close Pos:', edge_close_pos)
     print('Level Button Pos:', level_button_pos)
     print('Word Palette BBox:', word_palette_bbox)
 
@@ -77,7 +104,9 @@ def main():
         if args[i] == '-s' or args[i] == '--speed':
             input_speed = float(args[i+1])
 
-    wordscapes_bot = WordscapesBot(word_palette_bbox, level_button_pos, input_speed)
+    wordscapes_bot = WordscapesBot(word_palette_bbox, level_button_pos, input_speed, piggy_close_pos, edge_close_pos)
+    #wordscapes_bot = WordscapesBot(word_palette_bbox, level_button_pos, input_speed, piggy_close_pos)
+    #wordscapes_bot = WordscapesBot(word_palette_bbox, level_button_pos, input_speed)
     wordscapes_bot.run()
 
 
