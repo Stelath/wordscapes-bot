@@ -28,3 +28,6 @@ You can add arguments to the end of the expression ex. `python -m wordscapesbot 
 | Argument        | Description   |
 | -------------   | :------------ |
 | `-s or --speed` | Used to set the input speed, enter a float to change the speed (ex. `-s 2.5` inputs words 2.5 times faster)|
+
+## Notice
+This isn't designed to be a cheating device, but rather a fun engineering problem to solve and a fun thing to watch. Case in point, this is ironically the hard way to go about it. I'm sure if someone wanted to, they could just change the app data, as Wordscapes can be played offline and will still update the leaderboard online. This suggests they have no actual verification to ensure that points earned offline were earned legitimately. But that would be boring and there would be no real technical problem to solve. As to why I made this in the first place, to provide context, this project started as a joke with some friends. And since I'm dyslexic I wanted a funny way to get back at them for annihilating me in Wordscapes.
