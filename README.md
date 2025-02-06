@@ -4,6 +4,9 @@
 
 A Python powered bot that solves WordScapes levels through OCR.
 
+# Note
+The creators of the game WordScapes, PeopleFun, have asked me to take this down as people were using it to cheat online in WordScapes. Out of principle I respected their request, and have removed the code, it was a fun project and I hope some of y'all have been inspired to learn more coding because of this 🫶.
+
 ## Demo
 ![Demo Gif](https://i.giphy.com/media/1CyQXlFN6QcDLHU8Xu/giphy-downsized-large.gif)
 
